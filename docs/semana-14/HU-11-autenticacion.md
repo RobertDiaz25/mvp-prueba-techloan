@@ -103,7 +103,9 @@ usuarios (id, username UNIQUE, nombre, password_hash, rol_id → roles.id)
 
 Las pruebas se escribieron, pero **todavía no se han ejecutado**. El entorno donde se desarrolló no tenía acceso a Maven Central ni a npm para descargar dependencias. Por eso la columna "Resultado obtenido" está vacía: se completa al ejecutarlas, guardando la evidencia en `evidencias/semana-14/`.
 
-### Automáticas (`backend/src/test/java/com/techloan/AutenticacionHu11Test.java`, ejecutar con `mvn test`)
+### Automáticas (`backend/src/test/java/com/techloan/AutenticacionHu11Test.java`)
+
+Ejecutar desde la raíz con `.\scripts\ejecutar-pruebas.ps1` (Windows) o `bash scripts/ejecutar-pruebas.sh`. El script corre `mvn test` y guarda la salida con fecha en `evidencias/semana-14/`.
 
 | Caso | Escenario | Resultado esperado | Resultado obtenido | Estado |
 |---|---|---|---|---|
@@ -138,7 +140,7 @@ Las pruebas se escribieron, pero **todavía no se han ejecutado**. El entorno do
 | Objetivo del incremento | Que Usuario y Encargado inicien sesión y vean solo las funciones de su rol. |
 | Tareas realizadas | T1–T10 de la sección 2: configuración, migración, semilla, seguridad, endpoints, interfaz, pruebas y documentación. |
 | Decisiones técnicas | Sesión de servidor (D4) por ser la estrategia confirmada y más simple para el MVP. Proxy de Next.js para trabajar en un solo origen (D5). Mensaje único ante credenciales incorrectas (D6). Contraseña de las cuentas de prueba solo por variable de entorno (D8). |
-| Bloqueos o defectos | 1) Al construir no había acceso a Maven Central ni a npm, así que el código no se pudo compilar ni ejecutar. Se revisó la sintaxis Java con `javac` y la de JSX con un analizador de Babel, sin errores. **Pendiente: ejecutar `mvn test` y las pruebas manuales.** 2) Numeración distinta de RF entre documentos (sección 1); se aplicó la Guía 13. |
+| Bloqueos o defectos | 1) Al construir no había acceso a Maven Central ni a npm, así que el código no se pudo compilar ni ejecutar. Se revisó la sintaxis Java con `javac` y la de JSX con un analizador de Babel, sin errores. 2) Se intentó ejecutar las pruebas en el equipo de Roberto mediante el entorno Linux de Claude, pero no inició por falta de espacio en disco (requiere hasta 17 GB). Se agregó `scripts/ejecutar-pruebas.ps1` para correr `mvn test` en Windows y guardar la salida en `evidencias/semana-14/`. **Pendiente: ejecutar las pruebas automáticas y manuales.** 3) Numeración distinta de RF entre documentos (sección 1); se aplicó la Guía 13. |
 | Pruebas ejecutadas | Ninguna todavía (ver sección 6). |
 | Evidencia | Este documento y el Pull Request de la rama `hu-11-autenticacion`. Capturas y salida de pruebas: pendientes en `evidencias/semana-14/`. |
 | Uso de IA | Claude (asistente de IA) generó el código y la documentación a partir de las Guías 9, 10, 13 y 14 y de los requisitos mejorados. Validación pendiente por el equipo: ejecutar las pruebas y revisar el Pull Request. |

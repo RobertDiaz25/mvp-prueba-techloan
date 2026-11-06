@@ -85,10 +85,12 @@ Todas usan la clave que definiste en `TECHLOAN_SEED_PASSWORD`.
 
 ## Pruebas
 
-```bash
-cd backend
-mvn test
+```powershell
+.\scripts\ejecutar-pruebas.ps1      # Windows (PowerShell)
+bash scripts/ejecutar-pruebas.sh    # Linux / macOS / Git Bash
 ```
+
+El script corre `mvn test` en `backend/` y guarda la salida con fecha en `evidencias/semana-14/`. También puedes ejecutarlas desde IntelliJ (clic derecho en `backend` → Run All Tests).
 
 `AutenticacionHu11Test` cubre CP01–CP04 de la Guía 13 y casos negativos: sin sesión, campos vacíos y cierre de sesión. Usa H2 en memoria con las mismas migraciones, así que no necesita PostgreSQL. Las pruebas manuales P-01 a P-08 están en el documento de la Semana 14. Guarda los resultados en `evidencias/semana-14/`.
 
@@ -97,6 +99,7 @@ mvn test
 ```
 backend/     API Spring Boot (config, domain, repository, security, service, web)
 frontend/    Next.js (app/, components/, lib/)
-docs/        decisiones y documentación por semana
+docs/        decisiones, documentación por semana y documentos fuente (docs/fuentes)
+scripts/     ejecución de pruebas con evidencia
 evidencias/  capturas, videos y resultados de pruebas reales
 ```
