@@ -1,0 +1,18 @@
+# Variables de entorno locales (pueden contener contraseñas)
+.env
+.env.local
+
+# Backend
+backend/target/
+*.class
+*.log
+
+# Frontend
+frontend/node_modules/
+frontend/.next/
+
+# Sistema / IDE
+.DS_Store
+.idea/
+.vscode/
+*.iml
