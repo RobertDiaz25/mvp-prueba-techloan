@@ -23,15 +23,18 @@ Decisiones y su estado de aprobación en [`docs/decisiones.md`](docs/decisiones.
 
 ## Cómo ejecutarlo
 
-### 1. Variables de entorno
+### 1. Archivo `.env`
 
-Copia `.env.example` como `.env` en la raíz y cambia las claves. El archivo `.env` no se sube al repositorio.
+Copia `.env.example` como `.env` en la raíz del repositorio y pon tus valores. El backend lo lee solo al arrancar (no hace falta configurar variables en IntelliJ), y `docker compose` también lo usa. El archivo `.env` no se sube al repositorio.
 
 | Variable | Para qué sirve |
 |---|---|
-| `DB_PASSWORD` | Contraseña del usuario `techloan` de PostgreSQL |
+| `DB_USER` | Usuario de PostgreSQL (por defecto `postgres`) |
+| `DB_PASSWORD` | Contraseña de ese usuario |
 | `TECHLOAN_SEED_PASSWORD` | Contraseña de las cuentas ficticias de prueba. Si está vacía, no se crean |
-| `DB_URL`, `DB_USER`, `PORT` | Opcionales. Por defecto: `jdbc:postgresql://localhost:5432/techloan`, `techloan`, `8080` |
+| `DB_URL`, `PORT` | Opcionales. Por defecto: `jdbc:postgresql://localhost:5432/techloan` y `8080` |
+
+Si defines estas mismas variables en el sistema o en IntelliJ, tienen prioridad sobre el `.env`.
 
 ### 2. PostgreSQL
 
@@ -41,26 +44,20 @@ Con Docker, desde la raíz:
 docker compose up -d
 ```
 
-Sin Docker, crea la base en psql o pgAdmin (usa la misma clave que pusiste en `DB_PASSWORD`):
+Sin Docker, crea en pgAdmin una base vacía llamada `techloan` con el usuario `postgres`:
 
 ```sql
-CREATE USER techloan WITH PASSWORD 'tu-clave';
-CREATE DATABASE techloan OWNER techloan;
+CREATE DATABASE techloan;
 ```
 
 ### 3. Backend (puerto 8080)
 
-El backend lee las variables del entorno. En una terminal con bash:
-
 ```bash
 cd backend
-export DB_PASSWORD=tu-clave
-export TECHLOAN_SEED_PASSWORD=tu-clave-demo
 mvn spring-boot:run
 ```
 
-En Windows PowerShell usa `$env:DB_PASSWORD="tu-clave"` y `$env:TECHLOAN_SEED_PASSWORD="tu-clave-demo"`. En IntelliJ, defínelas en Run → Edit Configurations → Environment variables.
-
+O en IntelliJ: abre `backend/pom.xml` como proyecto Maven y ejecuta `TechLoanApplication`.
 Al iniciar, Flyway crea las tablas `roles` y `usuarios` y se crean las cuentas de prueba si la base está vacía.
 
 ### 4. Frontend (puerto 3000)

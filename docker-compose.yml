@@ -5,7 +5,7 @@ services:
     container_name: techloan-db
     environment:
       POSTGRES_DB: techloan
-      POSTGRES_USER: techloan
+      POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:?Define DB_PASSWORD en el archivo .env}
     ports:
       - "5432:5432"
