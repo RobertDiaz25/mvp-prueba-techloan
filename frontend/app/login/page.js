@@ -43,9 +43,7 @@ export default function Login() {
       router.replace(inicioDe(u.rol));
     } catch (err) {
       setErrores(err.campos || {});
-      setMensaje(err.status === undefined || err.status >= 500
-        ? 'No se pudo conectar con el servidor. Revisa que el backend esté en marcha e inténtalo de nuevo.'
-        : err.message);
+      setMensaje(err.message);
       setDatos((d) => ({ ...d, password: '' }));
     } finally {
       setEnviando(false);
